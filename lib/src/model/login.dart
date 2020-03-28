@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 void main() async {
@@ -11,7 +12,10 @@ Future<bool> login(username, pin) async {
   // http.post('http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php')
   var response = await http.post(
       'http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php',
-      body: '{"user": "kmamamori", "pin": "8704", "quiz":"quiz01"}');
-  // if(response.body)
+      body: '{"user": "$username", "pin": "$pin", "quiz":"quiz01"}');
+  var data = await json.decode(response.body);
+  if(data['response']==false){
+    return false;
+  }
   return true;
 }
