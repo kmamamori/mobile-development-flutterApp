@@ -8,13 +8,23 @@ class CreateQuiz extends StatelessWidget {
         title: Text("Second Screen"),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            // Navigate back to first screen when tapped.
-          },
-          child: Text('Go back!'),
-        ),
-      ),
+        child: Column(children: [
+          TextFormField(
+            decoration: InputDecoration(
+              labelText: "How many questions would you like to answer?"),
+          ),
+          RaisedButton(
+            child: Text("Take Quiz!"),
+            onPressed: ()=> Navigator.pushNamed(context, 'answerQuiz')
+          )
+      ])
+          // RaisedButton(
+          //   onPressed: () {
+          //     // Navigate back to first screen when tapped.
+          //   },
+          //   child: Text('Go back!'),
+          // ),
+          ),
     );
   }
 }
