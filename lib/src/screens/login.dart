@@ -56,9 +56,10 @@ class _MyApp extends State {
                               hintText: "Pin", labelText: "Pin")),
                       RaisedButton(
                           child: Text("Log In!"),
-                          onPressed: (){
+                          onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              if (login(_loginData.username, _loginData.pin) !=null) {
+                              if (login(_loginData.username, _loginData.pin) !=
+                                  null) {
                                 Navigator.pushNamed(context, 'createQuiz');
                               } else {
                                 print("Wrong Credentials");
