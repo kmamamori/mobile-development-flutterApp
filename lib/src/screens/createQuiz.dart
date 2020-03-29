@@ -45,7 +45,8 @@ class CreateQuiz extends StatelessWidget {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                     c.createQuiz(n);
-                    Navigator.pushNamed(context, 'answerQuiz');
+                    Navigator.pushNamed(context, 'answerQuiz',
+                        arguments: {'n': n});
                   }
                   return false;
                 }),

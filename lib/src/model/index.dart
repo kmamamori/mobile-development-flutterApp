@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:http/http.dart' as http;
 
 class Model {
@@ -10,6 +11,7 @@ class Model {
   var pin;
   var reason;
   var questionsNum;
+  List answeringQuestions = List();
 
   void setResponse(res) {
     this.res = res;
@@ -83,11 +85,20 @@ class Model {
       firsttime = false;
     }
     questionsNum = j;
-    // return j;
   }
 
   void createQuiz(n){
-
+    var r = Random();
+    var n = 0;
+    while(n>0){
+      n = r.nextInt(this.questions.length);
+      this.answeringQuestions.add(this.questions[n]);
+      this.questions.removeAt(n);
+      n--;
+    }
+    this.answeringQuestions.forEach((q)=>{
+      print(q)
+    });
   }
 
   get getQuestionsNum => questionsNum;
