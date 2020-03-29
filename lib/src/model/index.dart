@@ -75,13 +75,14 @@ class Model {
       i++;
       data = await json.decode(response.body);
       if (data['response'] == true) {
-        // data['quiz']['question'].forEach((q) {
-        //   print(q);
-        // });
         print(data['quiz']['name']);
         setQuestions(data['quiz']['question']);
       }
       firsttime = false;
     }
+  }
+
+  void createQuiz(n){
+    
   }
 }

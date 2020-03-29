@@ -64,13 +64,11 @@ class _MyApp extends State {
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
-                              print("username ${_loginData.username}");
-                              print("pin ${_loginData.pin}");
                               if (await c.login(
                                       _loginData.username, _loginData.pin) ==
                                   true) {
                                 Navigator.pushNamed(context, 'createQuiz',
-                                    arguments: {'c':c});
+                                    arguments: {'c': c});
                               } else {
                                 return false;
                               }

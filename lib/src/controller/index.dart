@@ -103,4 +103,8 @@ class Controller {
     m.loadAllQuiz();
   }
 
+  void createQuiz(n){
+    m.createQuiz(n);
+  }
+
 }
