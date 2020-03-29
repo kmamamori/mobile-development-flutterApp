@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
 
-import "package:flutter_app/src/model/login.dart";
+import 'package:flutter_app/src/model/index.dart';
+import 'package:flutter_app/src/view/index.dart';
+import 'package:flutter_app/src/controller/index.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,6 +19,9 @@ class LoginData {
 
 class _MyApp extends State {
   LoginData _loginData = new LoginData();
+  static View v = View();
+  static Model m = Model();
+  Controller c = Controller(m, v);
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext inContext) {
@@ -61,12 +66,12 @@ class _MyApp extends State {
                               _formKey.currentState.save();
                               print("username ${_loginData.username}");
                               print("pin ${_loginData.pin}");
-                              if (await login(
+                              if (await c.login(
                                       _loginData.username, _loginData.pin) ==
                                   true) {
-                                Navigator.pushNamed(context, 'createQuiz');
+                                Navigator.pushNamed(context, 'createQuiz',
+                                    arguments: {'c':c});
                               } else {
-                                print("Wrong Credentials");
                                 return false;
                               }
                             } else {

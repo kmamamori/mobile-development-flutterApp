@@ -1,13 +1,13 @@
-import 'package:flutter_app/src/model/login.dart';
+import 'package:flutter_app/src/model/index.dart';
 import 'package:flutter_app/src/view/index.dart';
 import 'dart:io';
 import 'dart:core';
 
-class controller {
-  model m;
-  view v;
+class Controller {
+  Model m;
+  View v;
 
-  controller(m, v) {
+  Controller(m, v) {
     this.m = m;
     this.v = v;
   }
@@ -91,6 +91,16 @@ class controller {
 
   void displayReview(){
     v.displayReview(m.getGrades, m.getQuestions);
+  }
+
+  Future<bool> login(username, pin){
+    return m.login(username, pin);
+  }
+
+  get getUsername => m.getUsername;
+
+  void loadAllQuiz(){
+    m.loadAllQuiz();
   }
 
 }

@@ -1,4 +1,7 @@
-class view{
+
+
+
+class View{
   void displayQuestion(q){
     print(q);
   }
