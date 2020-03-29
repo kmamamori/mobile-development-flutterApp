@@ -107,4 +107,6 @@ class Controller {
     m.createQuiz(n);
   }
 
+  get getQuestionsNum => m.getQuestionsNum;
+
 }

@@ -9,6 +9,7 @@ class Model {
   var username;
   var pin;
   var reason;
+  var questionsNum;
 
   void setResponse(res) {
     this.res = res;
@@ -63,16 +64,17 @@ class Model {
     return true;
   }
 
-  void loadAllQuiz() async {
+  Future loadAllQuiz() async {
     var response;
     var data;
     var firsttime = true;
-    var i = 0;
+    var i = 0, j = 0;
     while (firsttime || data['response']) {
       response = await http.post(
           'http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php',
           body: '{"user": "$username", "pin": "$pin", "quiz":"quiz0$i"}');
       i++;
+      j++;
       data = await json.decode(response.body);
       if (data['response'] == true) {
         print(data['quiz']['name']);
@@ -80,9 +82,14 @@ class Model {
       }
       firsttime = false;
     }
+    questionsNum = j;
+    // return j;
   }
 
   void createQuiz(n){
-    
+
   }
+
+  get getQuestionsNum => questionsNum;
+
 }

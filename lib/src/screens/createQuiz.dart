@@ -19,25 +19,32 @@ class CreateQuiz extends StatelessWidget {
             child: Form(
           key: this._formKey,
           child: Column(children: [
+            Text("Please enter the number of questions that you want to take."),
             TextFormField(
-              keyboardType: TextInputType.number,
-              validator: (String inValue) {
-                if (inValue.length == 0) {
-                  return "Please enter a number";
-                }
-                return null;
-              },
-              onSaved: (String inValue) {
-                n = inValue;
-              },
-            ),
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    hintText: "Number", labelText: "Enter Number"),
+                validator: (String inValue) {
+                  if (inValue.length == 0) {
+                    return "Please enter a number";
+                  }
+                  if (int.parse(n) > c.getQuestionsNum) {
+                    return "You cannot pick greater than ${c.getQuestionsNum}.";
+                  }
+                  return null;
+                },
+                onSaved: (String inValue) {
+                  n = inValue;
+                },
+                onChanged: (text) {
+                  n = text;
+                }),
             RaisedButton(
                 child: Text("Take Quiz!"),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    // print(n);
-										c.createQuiz(n);
+                    c.createQuiz(n);
                     Navigator.pushNamed(context, 'answerQuiz');
                   }
                   return false;
