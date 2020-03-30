@@ -93,8 +93,8 @@ class Controller {
     v.displayReview(m.getGrades, m.getQuestions);
   }
 
-  Future<bool> login(username, pin) {
-    return m.login(username, pin);
+  Future<bool> login(username, pin) async {
+    return await m.login(username, pin);
   }
 
   get getUsername => m.getUsername;
@@ -113,5 +113,13 @@ class Controller {
 
   getAtAnsweringQuestion(i) {
     return m.getAtAnsweringQuestion(i);
+  }
+
+  Future setAnsweredValue(i, v) async {
+    await m.setAnsweredValue(i, v);
+  }
+
+  Future<void> createAnsweredList(n) async {
+    await m.createAnsweredList(n);
   }
 }

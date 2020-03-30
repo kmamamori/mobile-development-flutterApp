@@ -43,14 +43,14 @@ class CreateQuiz extends StatelessWidget {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-										print('pressed');
+                    print('pressed');
                     await c.createQuiz(int.parse(n));
-										List l = await c.getAnsweringQuestions;
-										// print(l);
-										// l.forEach((q){
-										// 	print("THIS IS A QUIZ");
-										// 	print(q);
-										// });
+                    List l = await c.getAnsweringQuestions;
+                    // print(l);
+                    // l.forEach((q){
+                    // 	print("THIS IS A QUIZ");
+                    // 	print(q);
+                    // });
                     await Navigator.pushNamed(context, 'answerQuiz',
                         arguments: {'n': n, 'c': c, 'l': l});
                   }

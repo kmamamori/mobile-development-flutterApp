@@ -12,6 +12,7 @@ class Model {
   var reason;
   var questionsNum;
   List answeringQuestions = List();
+  List answeredValue;
 
   void setResponse(res) {
     this.res = res;
@@ -138,5 +139,13 @@ class Model {
   String getAtAnsweringQuestion(i) {
     print(this.answeringQuestions[i]);
     return this.answeringQuestions[i];
+  }
+
+  Future setAnsweredValue(int i, v){
+    this.answeredValue[i] = v;
+  }
+
+  Future createAnsweredList(n){
+    answeredValue = new List(n);
   }
 }

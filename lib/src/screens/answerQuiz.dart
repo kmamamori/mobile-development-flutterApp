@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:flutter_app/src/screens/radio.dart';
 
 class AnswerQuiz extends StatelessWidget {
   // final controller c = context.;
@@ -19,15 +20,22 @@ class AnswerQuiz extends StatelessWidget {
     final Controller c = arguments['c'];
     final String n = arguments['n'];
     final List l = arguments['l'];
+    c.createAnsweredList(int.parse(n));
+    var _selectedValue;
+    // var i = 0;
     // print(l[0]);
     // l.forEach((q) {
     //   print("THIS IS A QUIZ");
     //   print(q);
     // });
 
-    l[0]['option'].forEach((o) {
-      print(o.runtimeType);
+    l.forEach((o) {
+      print(o);
     });
+
+    void updateValue(v) {
+      _selectedValue = v;
+    }
 
     // final List l = c.getAnsweringQuestions;
     // c.createQuiz(n);
@@ -40,39 +48,37 @@ class AnswerQuiz extends StatelessWidget {
         appBar: AppBar(
           title: Text("ANSWER QUIZ"),
         ),
-        body:
-            // Center(
-            //     child:
-            PageView.builder(
+        body: Center(
+            child: PageView.builder(
                 itemCount: int.parse(n),
                 itemBuilder: (context, int i) {
+                  Text('Question${i + 1}');
                   if (l[i]['type'] == 1) {
                     return Container(
                         child: Column(
                       children: <Widget>[
+                        Text('Question${i + 1}'),
                         Text("${l[i]['stem']}"),
-                        Column(
-                          children: l[i]['option']
-                              .map<Widget>((data) => RadioListTile(
-                                    title: Text("$data"),
-                                    groupValue: 'id',
-                                    value: 1,
-                                    onChanged: (val) {
-                                      print(val);
-                                    },
-                                  ))
-                              .toList(),
-                        )
+                        Center(child: MyStatefulWidget(l[i]['option']))
                       ],
                     ));
                   } else {
                     return Container(
                         child: Column(
                       children: <Widget>[
+                        Text('Question${i + 1}'),
                         Text("${l[i]['stem']}"),
+                        TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Your answer here.',
+                          ),
+                          onChanged: (v) async =>
+                              await c.setAnsweredValue(i, v),
+                        )
                       ],
                     ));
                   }
-                }));
+                })));
   }
 }
