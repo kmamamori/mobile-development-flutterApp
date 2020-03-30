@@ -24,14 +24,20 @@ class GradeQuiz extends StatelessWidget {
     // print('-----------------------');
     c.gradeQuestions();
 
-
     return Scaffold(
         appBar: AppBar(
           title: Text("GRADE QUIZ"),
         ),
         body: Center(
             child: Column(children: <Widget>[
-          Text('abc'),
+          Text('Grade: ${c.getGrade}/${l.length}'),
+          RaisedButton(
+            child: Text('REVIEW'),
+            onPressed: (){
+              print('pressed');
+              Navigator.pushNamed(context, 'reviewQuiz',
+                        arguments: {'c': c});
+          })
         ])));
   }
 }

@@ -74,25 +74,27 @@ class Model {
     var response;
     var data;
     var firsttime = true;
-    var i = 0, j = 0;
+    var i = 0, j=0;;
     while (firsttime || data['response']) {
       response = await http.post(
           'http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php',
           body: '{"user": "$username", "pin": "$pin", "quiz":"quiz0$i"}');
-      i++;
-      j++;
+      i++;      
       data = await json.decode(response.body);
       if (data['response'] == true) {
         print(data['quiz']['name']);
         setQuestions(data['quiz']['question']);
+        j++;
       }
       firsttime = false;
     }
-    questionsNum = j;
+    this.setQuestionsNum(j);
+    // questionsNum = j;
   }
 
   void createQuiz(int n) {
     print('createQuiz');
+    this.setQuestionsNum(n);
     var r = Random();
     var nextNum = 0;
     while (n > 0) {
@@ -103,6 +105,10 @@ class Model {
   }
 
   get getQuestionsNum => questionsNum;
+
+  void setQuestionsNum(n){
+    this.questionsNum = n;
+  }
 
   get getAnsweringQuestions => answeringQuestions;
 
@@ -139,14 +145,14 @@ class Model {
         print('Correct');
         this.setGrade(this.getGrade+1);
       }
-      print(i);
+      // print(i);
       i++;
     });
-    print(this.getGrade);
+    // print(this.getGrade);
     // this.setGrade(grade);
 
-    uncorrectQuestions.forEach((q) => {print(q)});
-    print('Grades');
-    print(this.getGrade);
+    // uncorrectQuestions.forEach((q) => {print(q)});
+    // print('Grades');
+    // print(this.getGrade);
   }
 }

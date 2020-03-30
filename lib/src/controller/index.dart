@@ -129,4 +129,6 @@ class Controller {
     m.gradesQuestions();
   }
 
+  get getGrade => m.getGrade;
+
 }
