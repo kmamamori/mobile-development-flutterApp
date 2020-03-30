@@ -1,5 +1,3 @@
-// import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 
@@ -11,6 +9,7 @@ class CreateQuiz extends StatelessWidget {
     final Controller c = arguments['c'];
     String n = '0';
     c.loadAllQuiz();
+    print('Create Quiz');
     return Scaffold(
         appBar: AppBar(
           title: Text("CREATE QUIZ"),
@@ -41,12 +40,19 @@ class CreateQuiz extends StatelessWidget {
                 }),
             RaisedButton(
                 child: Text("Take Quiz!"),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    c.createQuiz(n);
-                    Navigator.pushNamed(context, 'answerQuiz',
-                        arguments: {'n': n});
+										print('pressed');
+                    await c.createQuiz(int.parse(n));
+										List l = await c.getAnsweringQuestions;
+										// print(l);
+										// l.forEach((q){
+										// 	print("THIS IS A QUIZ");
+										// 	print(q);
+										// });
+                    await Navigator.pushNamed(context, 'answerQuiz',
+                        arguments: {'n': n, 'c': c, 'l': l});
                   }
                   return false;
                 }),

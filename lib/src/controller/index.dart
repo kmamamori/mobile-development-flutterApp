@@ -53,9 +53,9 @@ class Controller {
       stdout.write('Invalid Input.\n');
       return optionInput(l);
     }
-    if(cc>0 && cc<l+1){
+    if (cc > 0 && cc < l + 1) {
       return cc;
-    }else{
+    } else {
       print('Pick the number between 1-${l}');
       return optionInput(l);
     }
@@ -69,44 +69,49 @@ class Controller {
       stdout.write('Invalid Input');
       return fillBlankInput();
     }
-    if(c.length<3){
+    if (c.length < 3) {
       print('This is a fill-in-the-blank question.');
       return fillBlankInput();
-    }else{
+    } else {
       return c;
     }
   }
 
-  void addAnswer(a){
+  void addAnswer(a) {
     m.addAnswer(a);
   }
 
-  int calculateGrades(){
+  int calculateGrades() {
     var s = 0;
-    m.getGrades.forEach((g){
-      s+=g;
+    m.getGrades.forEach((g) {
+      s += g;
     });
     return s;
   }
 
-  void displayReview(){
+  void displayReview() {
     v.displayReview(m.getGrades, m.getQuestions);
   }
 
-  Future<bool> login(username, pin){
+  Future<bool> login(username, pin) {
     return m.login(username, pin);
   }
 
   get getUsername => m.getUsername;
 
-  void loadAllQuiz(){
+  void loadAllQuiz() {
     m.loadAllQuiz();
   }
 
-  void createQuiz(n){
+  Future createQuiz(n) {
     m.createQuiz(n);
   }
 
   get getQuestionsNum => m.getQuestionsNum;
 
+  get getAnsweringQuestions => m.getAnsweringQuestions;
+
+  getAtAnsweringQuestion(i) {
+    return m.getAtAnsweringQuestion(i);
+  }
 }

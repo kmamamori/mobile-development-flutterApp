@@ -67,6 +67,7 @@ class Model {
   }
 
   Future loadAllQuiz() async {
+    print('load All Quiz');
     var response;
     var data;
     var firsttime = true;
@@ -87,20 +88,55 @@ class Model {
     questionsNum = j;
   }
 
-  void createQuiz(n){
+  void createQuiz(int n) {
+    print('createQuiz');
+    // print(n);
     var r = Random();
-    var n = 0;
-    while(n>0){
-      n = r.nextInt(this.questions.length);
-      this.answeringQuestions.add(this.questions[n]);
-      this.questions.removeAt(n);
+    var nextNum = 0;
+    // n = int.parse(n);
+    // n = json.decode(n);
+    // n = int.parse(Map<String, dynamic>n);
+    // print(n.runtimeType);
+    // n = int.parse(n);
+    // print("this.questins.length: ${this.questions.length}"); //ok
+    // var s = '';
+    // var l = questions.asMap();
+    // var data;
+    // print(this.questions.runtimeType);
+    // print(l.runtimeType);
+
+    // print(this.questions[0].runtimeType);
+    // print(l[0].runtimeType);
+
+    // data = json.decode(l[0] as String).cast<String>();
+    // print(data.runtimeType);
+
+    // print("${this.questions[0]} && ${l[0]}");
+
+    while (n > 0) {
+      nextNum = r.nextInt(this.questions.length);
+      // s = l[0];
+      // print(nextNum);
+      // print("questions[nextNum]:$s");
+      answeringQuestions.add(this.questions[nextNum]);
+      // print(this.questions[nextNum]);
+      // this.questions.removeAt(nextNum);
       n--;
     }
-    this.answeringQuestions.forEach((q)=>{
-      print(q)
-    });
+    // var j = 0;
+    // this.answeringQuestions.forEach((q) {
+    //   print(q);
+    //   print(j++);
+    // });
+    // return this.answeringQuestions;
   }
 
   get getQuestionsNum => questionsNum;
 
+  get getAnsweringQuestions => answeringQuestions;
+
+  String getAtAnsweringQuestion(i) {
+    print(this.answeringQuestions[i]);
+    return this.answeringQuestions[i];
+  }
 }
