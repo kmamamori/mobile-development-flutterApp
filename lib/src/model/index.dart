@@ -141,6 +141,7 @@ class Model {
     return this.answeringQuestions[i];
   }
 
+  //i: questions index, v: value(int)
   Future setAnsweredValue(int i, v){
     this.answeredValue[i] = v;
   }
@@ -148,4 +149,7 @@ class Model {
   Future createAnsweredList(n){
     answeredValue = new List(n);
   }
+
+  List get getAnsweredValue => answeredValue;
+  
 }

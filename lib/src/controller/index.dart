@@ -122,4 +122,7 @@ class Controller {
   Future<void> createAnsweredList(n) async {
     await m.createAnsweredList(n);
   }
+
+  get getAnsweredValue => m.getAnsweredValue;
+
 }

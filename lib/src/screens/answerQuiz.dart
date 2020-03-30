@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
-import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:flutter_app/src/screens/radio.dart';
 
 class AnswerQuiz extends StatelessWidget {
@@ -21,7 +20,7 @@ class AnswerQuiz extends StatelessWidget {
     final String n = arguments['n'];
     final List l = arguments['l'];
     c.createAnsweredList(int.parse(n));
-    var _selectedValue;
+    // var _selectedValue;
     // var i = 0;
     // print(l[0]);
     // l.forEach((q) {
@@ -33,20 +32,20 @@ class AnswerQuiz extends StatelessWidget {
       print(o);
     });
 
-    void updateValue(v) {
-      _selectedValue = v;
-    }
-
-    // final List l = c.getAnsweringQuestions;
-    // c.createQuiz(n);
-    // print(l.length);
-    // var s;
-    // var i = 0;
-    // PageController controller = PageController();
-    // GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
     return Scaffold(
         appBar: AppBar(
           title: Text("ANSWER QUIZ"),
+          actions: <Widget>[
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: RaisedButton(
+                  onPressed: () async {
+                    print('abcde');
+                    await c.getAnsweredValue.forEach((l) => {print(l)});
+                  },
+                  child: Text('DONE!'),
+                ))
+          ],
         ),
         body: Center(
             child: PageView.builder(
@@ -59,7 +58,7 @@ class AnswerQuiz extends StatelessWidget {
                       children: <Widget>[
                         Text('Question${i + 1}'),
                         Text("${l[i]['stem']}"),
-                        Center(child: MyStatefulWidget(l[i]['option']))
+                        Center(child: MyStatefulWidget(l[i]['option'], c, i))
                       ],
                     ));
                   } else {
