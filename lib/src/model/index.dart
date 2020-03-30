@@ -11,8 +11,10 @@ class Model {
   var pin;
   var reason;
   var questionsNum;
+  var grade=0;
   List answeringQuestions = List();
   List answeredValue;
+  List uncorrectQuestions = List();
 
   void setResponse(res) {
     this.res = res;
@@ -91,45 +93,13 @@ class Model {
 
   void createQuiz(int n) {
     print('createQuiz');
-    // print(n);
     var r = Random();
     var nextNum = 0;
-    // n = int.parse(n);
-    // n = json.decode(n);
-    // n = int.parse(Map<String, dynamic>n);
-    // print(n.runtimeType);
-    // n = int.parse(n);
-    // print("this.questins.length: ${this.questions.length}"); //ok
-    // var s = '';
-    // var l = questions.asMap();
-    // var data;
-    // print(this.questions.runtimeType);
-    // print(l.runtimeType);
-
-    // print(this.questions[0].runtimeType);
-    // print(l[0].runtimeType);
-
-    // data = json.decode(l[0] as String).cast<String>();
-    // print(data.runtimeType);
-
-    // print("${this.questions[0]} && ${l[0]}");
-
     while (n > 0) {
       nextNum = r.nextInt(this.questions.length);
-      // s = l[0];
-      // print(nextNum);
-      // print("questions[nextNum]:$s");
       answeringQuestions.add(this.questions[nextNum]);
-      // print(this.questions[nextNum]);
-      // this.questions.removeAt(nextNum);
       n--;
     }
-    // var j = 0;
-    // this.answeringQuestions.forEach((q) {
-    //   print(q);
-    //   print(j++);
-    // });
-    // return this.answeringQuestions;
   }
 
   get getQuestionsNum => questionsNum;
@@ -141,15 +111,42 @@ class Model {
     return this.answeringQuestions[i];
   }
 
-  //i: questions index, v: value(int)
-  Future setAnsweredValue(int i, v){
+  Future setAnsweredValue(int i, v) {
     this.answeredValue[i] = v;
   }
 
-  Future createAnsweredList(n){
+  Future createAnsweredList(n) {
     answeredValue = new List(n);
   }
 
   List get getAnsweredValue => answeredValue;
-  
+
+  void setGrade(n){
+    this.grade = n;
+  }
+
+  get getGrade => this.grade;
+
+  void gradesQuestions() {
+    var i = 0;
+    // var grade = 0;
+    answeringQuestions.forEach((q) {
+      if (q['answer'] != answeredValue[0]) {
+        uncorrectQuestions.add(q);
+        print('Uncorrect');
+      } else {
+        // this.grade++;
+        print('Correct');
+        this.setGrade(this.getGrade+1);
+      }
+      print(i);
+      i++;
+    });
+    print(this.getGrade);
+    // this.setGrade(grade);
+
+    uncorrectQuestions.forEach((q) => {print(q)});
+    print('Grades');
+    print(this.getGrade);
+  }
 }

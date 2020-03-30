@@ -125,4 +125,8 @@ class Controller {
 
   get getAnsweredValue => m.getAnsweredValue;
 
+  void gradeQuestions() {
+    m.gradesQuestions();
+  }
+
 }

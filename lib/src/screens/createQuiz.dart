@@ -43,7 +43,7 @@ class CreateQuiz extends StatelessWidget {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
-                    print('pressed');
+                    // print('pressed');
                     await c.createQuiz(int.parse(n));
                     List l = await c.getAnsweringQuestions;
                     // print(l);

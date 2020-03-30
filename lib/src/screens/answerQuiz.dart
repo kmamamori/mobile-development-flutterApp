@@ -1,5 +1,3 @@
-// import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 import 'package:flutter_app/src/screens/radio.dart';
@@ -28,9 +26,9 @@ class AnswerQuiz extends StatelessWidget {
     //   print(q);
     // });
 
-    l.forEach((o) {
-      print(o);
-    });
+    // l.forEach((o) {
+    //   print(o);
+    // });
 
     return Scaffold(
         appBar: AppBar(
@@ -40,8 +38,10 @@ class AnswerQuiz extends StatelessWidget {
                 padding: EdgeInsets.only(right: 20.0),
                 child: RaisedButton(
                   onPressed: () async {
-                    print('abcde');
-                    await c.getAnsweredValue.forEach((l) => {print(l)});
+                    List l = await c.getAnsweredValue;
+                    // l.forEach((ll)=>print(ll));
+                    Navigator.pushNamed(context, 'gradeQuiz',
+                        arguments: {'c': c, 'l': l});
                   },
                   child: Text('DONE!'),
                 ))

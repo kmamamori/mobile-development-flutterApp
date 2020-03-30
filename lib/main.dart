@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_app/src/screens/home.dart';
-
 import 'package:flutter_app/src/screens/login.dart';
 import 'package:flutter_app/src/screens/answerQuiz.dart';
 import 'package:flutter_app/src/screens/createQuiz.dart';
+import 'package:flutter_app/src/screens/gradeQuiz.dart';
 
 // import 'package:flutter_app/src/screens/radio.dart';
 
@@ -23,6 +22,7 @@ void main() {
       // define the routes
       'answerQuiz': (context) => AnswerQuiz(),
       'createQuiz': (context) => CreateQuiz(),
+      'gradeQuiz': (context) => GradeQuiz()
     },
   ));
 }

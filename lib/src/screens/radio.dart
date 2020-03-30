@@ -35,7 +35,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 groupValue: _character,
                 value: data,
                 onChanged: (v) async {
-                  print(v);
+                  // print(v);
                   setState(() {
                     _character = v;
                   });
