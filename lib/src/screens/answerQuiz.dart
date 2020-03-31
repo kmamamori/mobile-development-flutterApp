@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 import 'package:flutter_app/src/screens/radio.dart';
-// import 'flutter_app/src/assets/placeholder.png' as p; 
+// import 'flutter_app/src/assets/placeholder.png' as p;
 
 class AnswerQuiz extends StatelessWidget {
   // final controller c = context.;
@@ -53,19 +53,27 @@ class AnswerQuiz extends StatelessWidget {
                 itemCount: int.parse(n),
                 itemBuilder: (context, int i) {
                   Text('Question${i + 1}');
+
                   if (l[i]['type'] == 1) {
                     return Container(
                         child: Column(
                       children: <Widget>[
                         Text('Question${i + 1}'),
+                        Text("${l[i]['stem']}"),
                         // FadeInImage(
                         //     placeholder: Text("null"),
                         //     image: NetworkImage(
                         //         'http://www.cs.utep.edu/cheon/cs4381/homework/qeuiz/figure.php?name=${l[i]['figure']}')),
                         // Image.network(
                         //   'http://www.cs.utep.edu/cheon/cs4381/homework/qeuiz/figure.php?name=quiz00-fig1.png',
-
                         // ),
+                        Center(
+                          child: l[i]['figure'] == null
+                              ? Text('')
+                              : Image.network(
+                                  "http://www.cs.utep.edu/cheon/cs4381/homework/quiz/figure.php?name=${l[i]['figure']}",
+                                ),
+                        ),
                         Center(child: MyStatefulWidget(l[i]['option'], c, i))
                       ],
                     ));
@@ -75,6 +83,13 @@ class AnswerQuiz extends StatelessWidget {
                       children: <Widget>[
                         Text('Question${i + 1}'),
                         Text("${l[i]['stem']}"),
+                        Center(
+                          child: l[i]['figure'] == null
+                              ? Text('')
+                              : Image.network(
+                                  "http://www.cs.utep.edu/cheon/cs4381/homework/quiz/figure.php?name=${l[i]['figure']}",
+                                ),
+                        ),
                         TextField(
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),

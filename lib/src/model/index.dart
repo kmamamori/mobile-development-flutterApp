@@ -10,7 +10,7 @@ class Model {
   var username;
   var pin;
   var reason;
-  var questionsNum;
+  var questionsNum=0;
   var grade = 0;
   List answeringQuestions = List();
   List answeredValue;
@@ -25,6 +25,7 @@ class Model {
   void setQuestions(questions) {
     questions.forEach((q) {
       this.questions.add(q);
+      this.setQuestionsNum(this.getQuestionsNum + 1);
     });
   }
 
@@ -74,8 +75,7 @@ class Model {
     var response;
     var data;
     var firsttime = true;
-    var i = 0, j = 0;
-    ;
+    var i = 0;
     while (firsttime || data['response']) {
       response = await http.post(
           'http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php',
@@ -85,17 +85,14 @@ class Model {
       if (data['response'] == true) {
         print(data['quiz']['name']);
         setQuestions(data['quiz']['question']);
-        j++;
       }
       firsttime = false;
     }
-    this.setQuestionsNum(j);
-    // questionsNum = j;
   }
 
   void createQuiz(int n) {
     print('createQuiz');
-    this.setQuestionsNum(n);
+    // this.setQuestionsNum(n);
     var r = Random();
     var nextNum = 0;
     while (n > 0) {
@@ -106,7 +103,7 @@ class Model {
     answeringQuestions.forEach((q)=>print(q));
   }
 
-  get getQuestionsNum => questionsNum;
+  get getQuestionsNum => this.questionsNum;
 
   void setQuestionsNum(n) {
     this.questionsNum = n;
