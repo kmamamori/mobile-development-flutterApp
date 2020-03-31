@@ -62,10 +62,10 @@ class AnswerQuiz extends StatelessWidget {
                         //     placeholder: Text("null"),
                         //     image: NetworkImage(
                         //         'http://www.cs.utep.edu/cheon/cs4381/homework/qeuiz/figure.php?name=${l[i]['figure']}')),
-                        Image.network(
-                          'http://www.cs.utep.edu/cheon/cs4381/homework/qeuiz/figure.php?name=quiz00-fig1.png',
+                        // Image.network(
+                        //   'http://www.cs.utep.edu/cheon/cs4381/homework/qeuiz/figure.php?name=quiz00-fig1.png',
 
-                        ),
+                        // ),
                         Center(child: MyStatefulWidget(l[i]['option'], c, i))
                       ],
                     ));
