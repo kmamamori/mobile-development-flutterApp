@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 
+/// Displays uncorrect answered questions with the right answer
 class ReviewQuiz extends StatelessWidget {
 
   @override
@@ -18,14 +19,16 @@ class ReviewQuiz extends StatelessWidget {
                 padding: EdgeInsets.only(right: 20.0),
                 child: RaisedButton(
                   onPressed: () async {
+                    // initialized all data for new quiz
                     c.initialize();
                     Navigator.popUntil(context, ModalRoute.withName('/'));
                   },
-                  child: Text('Take another quiz.'),
+                  child: Text('New Quiz.'),
                 ))
           ],
         ),
         body: Center(
+          /// Listview to display all the questions
           child: ListView.builder(
               itemCount: l.length,
               itemBuilder: (context, index) {
@@ -37,8 +40,8 @@ class ReviewQuiz extends StatelessWidget {
                   );
                 } else {
                   return ListTile(
-                    title: Text('${l[index]}'),
-                    subtitle: Text("Answer: ${l[index]['answer'][0]}"),
+                    title: Text('${l[index]['stem']}'),
+                    subtitle: Text("  Answer: ${l[index]['answer'][0]}"),
                   );
                 }
               }),

@@ -4,22 +4,32 @@ import 'package:flutter_app/src/model/index.dart';
 import 'package:flutter_app/src/view/index.dart';
 import 'package:flutter_app/src/controller/index.dart';
 
+/// StatefulWidget class to keep track of user input
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
   @override
   _MyApp createState() => _MyApp();
 }
 
+/// Required field
 class LoginData {
   String username = "";
   String pin = "";
 }
 
+/// The Login UI contains
 class _MyApp extends State {
   LoginData _loginData = new LoginData();
+
+  /// Needed for MVC model program
   static View v = View();
+
+  /// Needed for MVC model program
   static Model m = Model();
+
+  /// Needed for MVC model program
   Controller c = Controller(m, v);
+  // Used when login credentials doesnt match
   var err = '';
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
@@ -32,6 +42,10 @@ class _MyApp extends State {
                 child: Form(
                     key: this._formKey,
                     child: Column(children: [
+                      Text(
+                        'Login',
+                        style: TextStyle(height: 3, fontSize: 80),
+                      ),
                       TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           validator: (String inValue) {
@@ -59,7 +73,7 @@ class _MyApp extends State {
                           },
                           decoration: InputDecoration(
                               hintText: "Pin", labelText: "Pin")),
-                      Text(err),
+                      Text(err, style: TextStyle(color: Colors.red)),
                       RaisedButton(
                           child: Text("Log In!"),
                           onPressed: () async {

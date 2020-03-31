@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 
+/// Class that gets input and creates quiz
 class CreateQuiz extends StatelessWidget {
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
@@ -8,6 +9,7 @@ class CreateQuiz extends StatelessWidget {
     final Map arguments = ModalRoute.of(context).settings.arguments as Map;
     final Controller c = arguments['c'];
     String n = '0';
+    // retrieve all quiz
     c.loadAllQuiz();
     print('Create Quiz');
     return Scaffold(
@@ -18,7 +20,10 @@ class CreateQuiz extends StatelessWidget {
             child: Form(
           key: this._formKey,
           child: Column(children: [
-            Text("Please enter the number of questions that you want to take."),
+            Text(
+              "Please enter the number of questions that you want to take.",
+              style: TextStyle(fontSize: 20),
+            ),
             TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -43,14 +48,18 @@ class CreateQuiz extends StatelessWidget {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
+                    // create quiz with passing the input value
                     await c.createQuiz(int.parse(n));
+                    /// retrieve quiz
                     List l = await c.getAnsweringQuestions;
+                    // navigate to the next page
                     await Navigator.pushNamed(context, 'answerQuiz',
                         arguments: {'n': n, 'c': c, 'l': l});
                   }
                   return false;
                 }),
-                Text("When the Quiz starts, swipe to left/right to answer all the questions.")
+            Text(
+                "When the Quiz starts, swipe to left/right to answer all the questions.")
           ]),
         )));
   }

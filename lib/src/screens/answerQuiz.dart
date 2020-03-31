@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/controller/index.dart';
 import 'package:flutter_app/src/screens/radio.dart';
 
+/// A class which let user answer questions
 class AnswerQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     print('Answer Quiz');
     final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+    /// Arguments
     final Controller c = arguments['c'];
+    /// Arguments
     final String n = arguments['n'];
+    /// Arguments
     final List l = arguments['l'];
+    /// creates n-sized empty list
     c.createAnsweredList(int.parse(n));
 
     return Scaffold(
@@ -42,6 +47,7 @@ class AnswerQuiz extends StatelessWidget {
                         Text('Question${i + 1}'),
                         Text("${l[i]['stem']}"),
                         Center(
+                          // if figure exist displays, unless null
                           child: l[i]['figure'] == null
                               ? Text('')
                               : Image.network(
@@ -58,6 +64,7 @@ class AnswerQuiz extends StatelessWidget {
                         Text('Question${i + 1}'),
                         Text("${l[i]['stem']}"),
                         Center(
+                          // if figure exist displays, unless null
                           child: l[i]['figure'] == null
                               ? Text('')
                               : Image.network(

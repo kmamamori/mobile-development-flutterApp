@@ -5,6 +5,7 @@ import 'package:flutter_app/src/screens/createQuiz.dart';
 import 'package:flutter_app/src/screens/gradeQuiz.dart';
 import 'package:flutter_app/src/screens/reviewQuiz.dart';
 
+/// Initial point of the coding
 void main() {
   runApp(MaterialApp(
     initialRoute: '/',
