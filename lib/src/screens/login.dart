@@ -25,7 +25,6 @@ class _MyApp extends State {
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext inContext) {
-    // c.initialize();
     print('Login');
     return MaterialApp(
         home: Scaffold(

@@ -3,12 +3,6 @@ import 'package:flutter_app/src/controller/index.dart';
 import 'package:flutter_app/src/screens/radio.dart';
 
 class GradeQuiz extends StatelessWidget {
-  // final controller c = context.;
-  // final Map arguments = ModalRoute.of(context).settings.arguments as Map;
-  // final controller c;
-  // final String mes = ModalRoute.of(context).settings.arguments.mes;
-  // const CreateQuiz(this.c, this.mes, {Key key}) : super(key: key);
-  // print(mes);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +11,6 @@ class GradeQuiz extends StatelessWidget {
     final Controller c = arguments['c'];
     final List l = arguments['l'];
 
-    // print('-----------------------');
-    // c.getAnsweredValue.forEach((v) => print(v));
-    // print('-----------------------');
-    // c.getAnsweringQuestions.forEach((v) => print(v));
-    // print('-----------------------');
     c.gradeQuestions();
 
     return Scaffold(
@@ -34,12 +23,7 @@ class GradeQuiz extends StatelessWidget {
           RaisedButton(
               child: Text('REVIEW'),
               onPressed: () async {
-                // print('pressed');
-                // print('------------------------------------------------');
                 List l = await c.getUncorrectQuestions;
-                // print('Grades');
-                // print(c.getGrade);
-                // print('------------------------------------------------');
                 Navigator.pushNamed(context, 'reviewQuiz',
                     arguments: {'c': c, 'l': l});
               })

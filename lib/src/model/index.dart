@@ -56,7 +56,6 @@ class Model {
   }
 
   Future<bool> login(username, pin) async {
-    // http.post('http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php')
     this.setUsername(username);
     this.setPin(pin);
     var response = await http.post(
@@ -92,7 +91,7 @@ class Model {
 
   void createQuiz(int n) {
     print('createQuiz');
-    // this.setQuestionsNum(n);
+ 
     var r = Random();
     var nextNum = 0;
     while (n > 0) {
@@ -134,55 +133,31 @@ class Model {
 
   void gradesQuestions() {
     var i = 0;
-    // var grade = 0;
     answeringQuestions.forEach((q) {
       print(q);
       if (q['type'] == 1) {
         if (q['answer'] != answeredValue[i]) {
           uncorrectQuestions.add(q);
-          // print('Uncorrect');
         } else {
-          // this.grade++;
-          // print('Correct');
           this.setGrade(this.getGrade + 1);
         }
       } else {
         if (q['answer'][0] != answeredValue[i]) {
           uncorrectQuestions.add(q);
-          // print('Uncorrect');
         } else {
-          // this.grade++;
-          // print('Correct');
           this.setGrade(this.getGrade + 1);
         }
       }
-      // if (q['answer'] != answeredValue[i]) {
-      //   uncorrectQuestions.add(q);
-      //   print('Uncorrect');
-      // } else {
-      //   // this.grade++;
-      //   print('Correct');
-      //   this.setGrade(this.getGrade + 1);
-      // }
-      // print(i);
       i++;
     });
 
-    // print('------------------------------------------------');
-    // uncorrectQuestions.forEach((q) => {print(q)});
-    // print('Grades');
-    // print(this.getGrade);
-    // print('------------------------------------------------');
+
   }
 
   get getUncorrectQuestins => this.uncorrectQuestions;
 
   void initialize(){
-    // this.setAnsweredValue(i, v)
-    // this.questions.clear();
-    // this.grades.clear();
     this.answeringQuestions.clear();
-    // this.answeredValue.clear();
     this.uncorrectQuestions.clear();
     this.setGrade(0);
   }
