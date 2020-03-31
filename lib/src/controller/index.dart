@@ -131,4 +131,10 @@ class Controller {
 
   get getGrade => m.getGrade;
 
+  get getUncorrectQuestions => m.getUncorrectQuestins;
+
+  void initialize(){
+    m.initialize();
+  }
+
 }

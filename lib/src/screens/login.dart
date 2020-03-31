@@ -4,10 +4,10 @@ import 'package:flutter_app/src/model/index.dart';
 import 'package:flutter_app/src/view/index.dart';
 import 'package:flutter_app/src/controller/index.dart';
 
-void main() => runApp(MyApp());
+// void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key: key);
+class Login extends StatefulWidget {
+  Login({Key key}) : super(key: key);
   @override
   _MyApp createState() => _MyApp();
 }
@@ -21,10 +21,11 @@ class _MyApp extends State {
   LoginData _loginData = new LoginData();
   static View v = View();
   static Model m = Model();
-  Controller c = Controller(m, v);
+  Controller c = Controller(m, v);  
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext inContext) {
+    // c.initialize();
     print('Login');
     return MaterialApp(
         home: Scaffold(

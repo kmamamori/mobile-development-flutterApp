@@ -32,12 +32,17 @@ class GradeQuiz extends StatelessWidget {
             child: Column(children: <Widget>[
           Text('Grade: ${c.getGrade}/${l.length}'),
           RaisedButton(
-            child: Text('REVIEW'),
-            onPressed: (){
-              print('pressed');
-              Navigator.pushNamed(context, 'reviewQuiz',
-                        arguments: {'c': c});
-          })
+              child: Text('REVIEW'),
+              onPressed: () async {
+                // print('pressed');
+                // print('------------------------------------------------');
+                List l = await c.getUncorrectQuestions;
+                // print('Grades');
+                // print(c.getGrade);
+                // print('------------------------------------------------');
+                Navigator.pushNamed(context, 'reviewQuiz',
+                    arguments: {'c': c, 'l': l});
+              })
         ])));
   }
 }

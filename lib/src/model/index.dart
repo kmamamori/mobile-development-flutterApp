@@ -11,7 +11,7 @@ class Model {
   var pin;
   var reason;
   var questionsNum;
-  var grade=0;
+  var grade = 0;
   List answeringQuestions = List();
   List answeredValue;
   List uncorrectQuestions = List();
@@ -74,12 +74,13 @@ class Model {
     var response;
     var data;
     var firsttime = true;
-    var i = 0, j=0;;
+    var i = 0, j = 0;
+    ;
     while (firsttime || data['response']) {
       response = await http.post(
           'http://www.cs.utep.edu/cheon/cs4381/homework/quiz/post.php',
           body: '{"user": "$username", "pin": "$pin", "quiz":"quiz0$i"}');
-      i++;      
+      i++;
       data = await json.decode(response.body);
       if (data['response'] == true) {
         print(data['quiz']['name']);
@@ -102,11 +103,12 @@ class Model {
       answeringQuestions.add(this.questions[nextNum]);
       n--;
     }
+    answeringQuestions.forEach((q)=>print(q));
   }
 
   get getQuestionsNum => questionsNum;
 
-  void setQuestionsNum(n){
+  void setQuestionsNum(n) {
     this.questionsNum = n;
   }
 
@@ -127,7 +129,7 @@ class Model {
 
   List get getAnsweredValue => answeredValue;
 
-  void setGrade(n){
+  void setGrade(n) {
     this.grade = n;
   }
 
@@ -137,22 +139,54 @@ class Model {
     var i = 0;
     // var grade = 0;
     answeringQuestions.forEach((q) {
-      if (q['answer'] != answeredValue[0]) {
-        uncorrectQuestions.add(q);
-        print('Uncorrect');
+      print(q);
+      if (q['type'] == 1) {
+        if (q['answer'] != answeredValue[i]) {
+          uncorrectQuestions.add(q);
+          // print('Uncorrect');
+        } else {
+          // this.grade++;
+          // print('Correct');
+          this.setGrade(this.getGrade + 1);
+        }
       } else {
-        // this.grade++;
-        print('Correct');
-        this.setGrade(this.getGrade+1);
+        if (q['answer'][0] != answeredValue[i]) {
+          uncorrectQuestions.add(q);
+          // print('Uncorrect');
+        } else {
+          // this.grade++;
+          // print('Correct');
+          this.setGrade(this.getGrade + 1);
+        }
       }
+      // if (q['answer'] != answeredValue[i]) {
+      //   uncorrectQuestions.add(q);
+      //   print('Uncorrect');
+      // } else {
+      //   // this.grade++;
+      //   print('Correct');
+      //   this.setGrade(this.getGrade + 1);
+      // }
       // print(i);
       i++;
     });
-    // print(this.getGrade);
-    // this.setGrade(grade);
 
+    // print('------------------------------------------------');
     // uncorrectQuestions.forEach((q) => {print(q)});
     // print('Grades');
     // print(this.getGrade);
+    // print('------------------------------------------------');
+  }
+
+  get getUncorrectQuestins => this.uncorrectQuestions;
+
+  void initialize(){
+    // this.setAnsweredValue(i, v)
+    // this.questions.clear();
+    // this.grades.clear();
+    this.answeringQuestions.clear();
+    // this.answeredValue.clear();
+    this.uncorrectQuestions.clear();
+    this.setGrade(0);
   }
 }

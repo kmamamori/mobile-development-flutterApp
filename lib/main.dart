@@ -17,10 +17,12 @@ void main() {
   // controller c = controller(m, v);
   runApp(MaterialApp(
     // debugShowCheckedModeBanner: false,
-    home: MyApp(), // route for home is '/' implicitly
+    // home: MyApp(), // route for home is '/' implicitly
+    initialRoute: '/',
     routes: 
     <String, WidgetBuilder>{
       // define the routes
+      '/': (context)=>Login(),
       'answerQuiz': (context) => AnswerQuiz(),
       'createQuiz': (context) => CreateQuiz(),
       'gradeQuiz': (context) => GradeQuiz(),

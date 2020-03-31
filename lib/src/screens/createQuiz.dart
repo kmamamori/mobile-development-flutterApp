@@ -51,6 +51,7 @@ class CreateQuiz extends StatelessWidget {
                     // 	print("THIS IS A QUIZ");
                     // 	print(q);
                     // });
+                    print("n is ->$n)");
                     await Navigator.pushNamed(context, 'answerQuiz',
                         arguments: {'n': n, 'c': c, 'l': l});
                   }
