@@ -12,7 +12,7 @@ class AnswerQuiz extends StatelessWidget {
     final String n = arguments['n'];
     final List l = arguments['l'];
     c.createAnsweredList(int.parse(n));
- 
+
     return Scaffold(
         appBar: AppBar(
           title: Text("ANSWER QUIZ"),

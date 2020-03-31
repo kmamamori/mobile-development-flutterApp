@@ -16,10 +16,6 @@ class Model {
   List answeredValue;
   List uncorrectQuestions = List();
 
-  void setResponse(res) {
-    this.res = res;
-  }
-
   bool get getResponse => res;
 
   void setQuestions(questions) {
@@ -44,6 +40,8 @@ class Model {
   void setReason(reason) {
     this.reason = reason;
   }
+
+  get getReason => reason;
 
   void setUsername(username) {
     this.username = username;

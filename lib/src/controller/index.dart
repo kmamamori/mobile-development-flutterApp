@@ -12,12 +12,6 @@ class Controller {
     this.v = v;
   }
 
-  void setResponse(res) {
-    m.setResponse(res);
-  }
-
-  bool get getResponse => m.getResponse;
-
   void setQuestions(questions) {
     m.setQuestions(questions);
   }
@@ -136,5 +130,7 @@ class Controller {
   void initialize(){
     m.initialize();
   }
+
+  get getReason => m.getReason;
 
 }

@@ -4,8 +4,6 @@ import 'package:flutter_app/src/model/index.dart';
 import 'package:flutter_app/src/view/index.dart';
 import 'package:flutter_app/src/controller/index.dart';
 
-// void main() => runApp(MyApp());
-
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
   @override
@@ -21,7 +19,8 @@ class _MyApp extends State {
   LoginData _loginData = new LoginData();
   static View v = View();
   static Model m = Model();
-  Controller c = Controller(m, v);  
+  Controller c = Controller(m, v);
+  var err = '';
   GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext inContext) {
@@ -60,6 +59,7 @@ class _MyApp extends State {
                           },
                           decoration: InputDecoration(
                               hintText: "Pin", labelText: "Pin")),
+                      Text(err),
                       RaisedButton(
                           child: Text("Log In!"),
                           onPressed: () async {
@@ -71,6 +71,9 @@ class _MyApp extends State {
                                 Navigator.pushNamed(context, 'createQuiz',
                                     arguments: {'c': c});
                               } else {
+                                setState(() {
+                                  err = c.getReason;
+                                });
                                 return false;
                               }
                             } else {

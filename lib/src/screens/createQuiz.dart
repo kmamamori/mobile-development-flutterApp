@@ -45,12 +45,12 @@ class CreateQuiz extends StatelessWidget {
                     _formKey.currentState.save();
                     await c.createQuiz(int.parse(n));
                     List l = await c.getAnsweringQuestions;
-                    print("n is ->$n)");
                     await Navigator.pushNamed(context, 'answerQuiz',
                         arguments: {'n': n, 'c': c, 'l': l});
                   }
                   return false;
                 }),
+                Text("When the Quiz starts, swipe to left/right to answer all the questions.")
           ]),
         )));
   }
